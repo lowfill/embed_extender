@@ -1,0 +1,15 @@
+{
+    "name": "beck24/embed_extender",
+    "description": "It allows video embedding in ELGG content. Just put the URL in blog posts, comments, messages, pages and the wire and video is displayed.",
+    "homepage": "https://github.com/beck24/embed_extender",
+    "type": "elgg-plugin",
+    "license": "GPL-2.0",
+    "authors": [
+        {
+            "name": "Matt Beckett"
+        }
+    ],
+    "require": {
+        "composer/installers": ">=1.0.8"
+    }
+}
