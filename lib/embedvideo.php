@@ -64,7 +64,7 @@ function videoembed_create_embed_object($url, $guid, $videowidth=0, $input) {
 	if (!$input) {
 		return '<p><b>' . elgg_echo('embedvideo:unrecognized') . '</b></p>';
 	}
-	
+
 	return $input;
 }
 
@@ -79,9 +79,9 @@ function videoembed_create_embed_object($url, $guid, $videowidth=0, $input) {
 function videoembed_add_css($guid, $width, $height) {
 	$videocss = "
       <style type=\"text/css\">
-        #embedvideo{$guid} { 
+        #embedvideo{$guid} {
           height: {$height}px;
-          width: {$width}px; 
+          width: {$width}px;
         }
       </style>";
 
@@ -110,7 +110,7 @@ function videoembed_add_object($type, $url, $guid, $width, $height) {
 			$videodiv .= "<embed id=\"VideoPlayback\" src=\"https://video.google.com/googleplayer.swf?docid={$url}&hl=en&fs=true\" style=\"width:{$width}px;height:{$height}px\" allowFullScreen=\"true\" allowScriptAccess=\"always\" type=\"application/x-shockwave-flash\"> </embed>";
 			break;
 		case 'vimeo':
-			$videodiv .= "<object width=\"$width\" height=\"$height\"><param name=\"allowfullscreen\" value=\"true\" /><param name=\"allowscriptaccess\" value=\"always\" /><param name=\"movie\" value=\"http://vimeo.com/moogaloop.swf?clip_id={$url}&amp;server=vimeo.com&amp;show_title=0&amp;show_byline=0&amp;show_portrait=0&amp;color=&amp;fullscreen=1\" /><embed src=\"http://vimeo.com/moogaloop.swf?clip_id={$url}&amp;server=vimeo.com&amp;show_title=0&amp;show_byline=0&amp;show_portrait=0&amp;color=&amp;fullscreen=1\" type=\"application/x-shockwave-flash\" allowfullscreen=\"true\" allowscriptaccess=\"always\" width=\"$width\" height=\"$height\"></embed></object>";
+      $videodiv .="<iframe src=\"https://player.vimeo.com/video/{$url}\" width=\"$width\" height=\"$height\" frameborder=\"0\" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>";
 			break;
 		case 'metacafe':
 			$videodiv .= "<embed src=\"http://www.metacafe.com/fplayer/{$url}.swf\" width=\"$width\" height=\"$height\" wmode=\"transparent\" pluginspage=\"http://www.macromedia.com/go/getflashplayer\" type=\"application/x-shockwave-flash\"></embed>";
@@ -341,19 +341,19 @@ function videoembed_vimeo_parse_url($url) {
 	}
 
 	if (strpos($url, 'groups') != false) {
-		if (!preg_match('/(http:\/\/)(www\.)?(vimeo\.com\/groups)(.*)(\/videos\/)([0-9]*)/', $url, $matches)) {
+		if (!preg_match('/(http(s)?:\/\/)(www\.)?(vimeo\.com\/groups)(.*)(\/videos\/)([0-9]*)/', $url, $matches)) {
 			//echo "malformed vimeo group url";
 			return;
 		}
 
-		$hash = $matches[6];
+		$hash = $matches[7];
 	} else {
-		if (!preg_match('/(http:\/\/)(www\.)?(vimeo.com\/)([0-9]*)/', $url, $matches)) {
+		if (!preg_match('/(http(s)?:\/\/)(www\.)?(vimeo.com\/)([0-9]*)/', $url, $matches)) {
 			//echo "malformed vimeo url";
 			return;
 		}
 
-		$hash = $matches[4];
+		$hash = $matches[5];
 	}
 
 	//echo $hash;
@@ -509,7 +509,7 @@ function videoembed_veoh_parse_embed($url) {
 	//echo $hash;
 
 	return $hash;
-} 
+}
 
 /**
  * main dm interface
@@ -575,7 +575,7 @@ function videoembed_dm_parse_embed($url) {
 	//echo $hash;
 
 	return $hash;
-} 
+}
 
 /**
  * main blip interface
